@@ -1,14 +1,20 @@
-import { IUseListManager } from 'context/table-context/useListManager'
 import { FilterType, ListItemType } from 'context/Types'
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
+import { applyFilterToItem } from 'utils/FilterUtils'
 
 const listResultContext = createContext<IUseListManager | undefined>(undefined)
+
+export interface IUseListManager {
+    data: ListItemType[],
+    filterData: (filter: FilterType) => void
+}
 
 export const TableContextProvider = (props: PropsWithChildren<{}>) => {
     const [requestReturn, setRequestReturn] = useState<ListItemType[]>([])
     const [data, setData] = useState<ListItemType[]>([])
 
     useEffect(() => { runSearchRequest() }, [])
+    useEffect(() => { console.log('effect', data) }, [data])
 
     async function runSearchRequest(): Promise<void> {
         const newData = await fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -19,15 +25,10 @@ export const TableContextProvider = (props: PropsWithChildren<{}>) => {
     }
 
     function filterData(filter: FilterType): void {
-        if (!data.length) { return }
-        const filteredData = requestReturn.filter(item => {
-            if (item.name.includes(filter.filterByName.name)) { return true }
-            return false
-        })
-
+        const filteredData = requestReturn.filter(item => applyFilterToItem(filter, item))
         console.log('inside filter')
 
-        setData(filteredData)
+        setData([...filteredData])
     }
     return (
         <listResultContext.Provider value={{ data, filterData }}>

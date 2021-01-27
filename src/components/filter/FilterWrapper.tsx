@@ -1,4 +1,6 @@
 import { makeStyles, Paper, TextField } from '@material-ui/core'
+import { NumericFilterFields } from 'components/filter/NumericFilterFields'
+import { SelectedNumberFilter } from 'components/filter/SelectedNumberFilter'
 import { useFilterContext } from 'context/filter-context/FilterContext'
 import { useTableContext } from 'context/table-context/TableContext'
 import React, { useEffect } from 'react'
@@ -17,7 +19,7 @@ export function FilterWrapper() {
     useEffect(() => {
         console.log('filtrando')
         tableContext.filterData(filterContext.filter)
-    }, [filterContext.filter.filterByName.name])
+    }, [filterContext.filter])
 
     const styles = useStyles()
 
@@ -28,6 +30,8 @@ export function FilterWrapper() {
                 value={filterContext.filter.filterByName.name}
                 onChange={event => filterContext.setNameFilter(event.target.value)}
             />
+            {filterContext.filter.filterByNumericValues.map(item => <SelectedNumberFilter filter={item} key={item.column} />)}
+            <NumericFilterFields/>
         </Paper>
     )
 }

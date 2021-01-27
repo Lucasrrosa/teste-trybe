@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export interface IUseFilterReturn {
     filter: FilterType
+    canAddNumericFilter: boolean
     addNumericFilter: (item: NumericFilterType) => void
     removeNumericField: (key: NumericValueColumnType) => void
     setNameFilter: (value: string) => void
@@ -26,6 +27,7 @@ export function useFilter(): IUseFilterReturn {
             filterByName: { name },
             filterByNumericValues: numericFields
         },
+        canAddNumericFilter: (numericFields.length < 5),
         addNumericFilter,
         removeNumericField,
         setNameFilter

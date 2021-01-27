@@ -19,7 +19,6 @@ export function TableHeader(props: ITableHeaderProps) {
                 <TableCell>Created</TableCell>
                 <TableCell>Edited</TableCell>
                 <TableCell>url</TableCell>
-                <TableCell>Residents</TableCell>
                 <TableCell>Films</TableCell>
             </TableRow>
 

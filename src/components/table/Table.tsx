@@ -1,15 +1,11 @@
 import { Paper, Table as MaterialTable, TableContainer } from '@material-ui/core'
 import { TableHeader } from 'components/table/TableHeader'
 import { TableItem } from 'components/table/TableItem'
-import { useListManager } from 'context/table-context/useListManager'
-import React, { useEffect } from 'react'
+import { useTableContext } from 'context/table-context/TableContext'
+import React from 'react'
 
 export function Table() {
-    const { data } = useListManager()
-
-    useEffect(() => {
-        console.log('inside table', data)
-    }, [data])
+    const { data } = useTableContext()
 
     return (
         <TableContainer component={Paper}>

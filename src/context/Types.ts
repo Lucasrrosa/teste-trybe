@@ -9,8 +9,8 @@ export type FilterByName = {
 }
 export type NumericFilterType = {
     comparison: ComparisonType,
-    value: string,
-    column: NumericValueColumnType
+    value?: string,
+    column?: NumericValueColumnType
 }
 
 export type FilterType = {

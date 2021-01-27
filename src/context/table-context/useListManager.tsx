@@ -1,5 +1,6 @@
 import { FilterType, ListItemType } from 'context/Types'
 import { useEffect, useState } from 'react'
+import { applyFilterToItem } from 'utils/FilterUtils'
 
 export interface IUseListManager {
     data: ListItemType[],
@@ -22,10 +23,7 @@ export function useListManager(): IUseListManager {
 
     function filterData(filter: FilterType): void {
         if (!data.length) { return }
-        const filteredData = requestReturn.filter(item => {
-            if (item.name.includes(filter.filterByName.name)) { return true }
-            return false
-        })
+        const filteredData = requestReturn.filter(item => applyFilterToItem(filter, item))
 
         console.log('inside filter')
 

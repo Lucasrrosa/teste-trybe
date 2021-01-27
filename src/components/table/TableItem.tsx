@@ -21,7 +21,6 @@ export function TableItem({ item }: ITableItemProps) {
             <TableCell>{item.created}</TableCell>
             <TableCell>{item.edited}</TableCell>
             <TableCell>{item.url}</TableCell>
-            <TableCell>{item.residents}</TableCell>
             <TableCell>{item.films}</TableCell>
         </TableRow>
     )
