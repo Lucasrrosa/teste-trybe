@@ -1,4 +1,4 @@
-import { MenuItem, Select } from '@material-ui/core'
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 import { ComparisonType } from 'context/Types'
 import React from 'react'
 
@@ -10,15 +10,19 @@ interface IComparisonSelectFieldProps {
 
 export function ComparisonSelectField(props: IComparisonSelectFieldProps) {
     return (
-        <Select
-            value={props.value}
-            onChange={(event) => { props.onChange(event.target.value as any as ComparisonType) }}
-        >
-            {
-                COMPARISON_FILTER_OPTIONS.map(item => (
-                    <MenuItem key={`menu-item-${item}`} value={item}>{item}</MenuItem>
-                ))
-            }
-        </Select>
+        <FormControl fullWidth>
+            <InputLabel>Comparação</InputLabel>
+            <Select
+                fullWidth
+                value={props.value}
+                onChange={(event) => { props.onChange(event.target.value as any as ComparisonType) }}
+            >
+                {
+                    COMPARISON_FILTER_OPTIONS.map(item => (
+                        <MenuItem key={`menu-item-${item}`} value={item}>{item}</MenuItem>
+                    ))
+                }
+            </Select>
+        </FormControl>
     )
 }

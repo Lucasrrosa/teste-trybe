@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core'
 import { FilterWrapper } from 'components/filter/FilterWrapper'
 import { Table } from 'components/table/Table'
 import { FilterContextProvider } from 'context/filter-context/FilterContext'
@@ -8,8 +9,10 @@ export function App() {
     return (
         <TableContextProvider>
             <FilterContextProvider>
-                <FilterWrapper/>
-                <Table/>
+                <Container>
+                    <FilterWrapper/>
+                    <Table/>
+                </Container>
             </FilterContextProvider>
         </TableContextProvider>
     )

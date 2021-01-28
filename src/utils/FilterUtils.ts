@@ -19,7 +19,7 @@ function applyNumericFilters(filters: NumericFilterType[], item: ListItemType): 
 }
 
 function applyFilterByName(item: ListItemType, nameFilter: string): boolean {
-    return item.name.includes(nameFilter)
+    return item.name.toLowerCase().includes(nameFilter.toLowerCase())
 }
 
 export function applyFilterToItem(filter: FilterType, item: ListItemType): boolean {

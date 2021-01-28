@@ -1,4 +1,4 @@
-import { makeStyles, Paper, TextField } from '@material-ui/core'
+import { Grid, makeStyles, Paper, TextField } from '@material-ui/core'
 import { NumericFilterFields } from 'components/filter/NumericFilterFields'
 import { SelectedNumberFilter } from 'components/filter/SelectedNumberFilter'
 import { useFilterContext } from 'context/filter-context/FilterContext'
@@ -25,13 +25,21 @@ export function FilterWrapper() {
 
     return (
         <Paper elevation={2} className={styles.root} >
-            <TextField
-                label={'Filtrar pelo nome'}
-                value={filterContext.filter.filterByName.name}
-                onChange={event => filterContext.setNameFilter(event.target.value)}
-            />
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <TextField
+                        fullWidth
+                        size={'small'}
+                        label={'Filtrar pelo nome'}
+                        value={filterContext.filter.filterByName.name}
+                        onChange={event => filterContext.setNameFilter(event.target.value)}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <NumericFilterFields/>
+                </Grid>
+            </Grid>
             {filterContext.filter.filterByNumericValues.map(item => <SelectedNumberFilter filter={item} key={item.column} />)}
-            <NumericFilterFields/>
         </Paper>
     )
 }
